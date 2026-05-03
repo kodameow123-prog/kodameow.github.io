@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Koda M — AI Automation Portfolio</title>
+  <style>
+    :root {
+      --bg: #0a0e17;
+      --surface: #121828;
+      --surface2: #1a2140;
+      --accent: #6c5ce7;
+      --accent2: #00cec9;
+      --text: #e8edf5;
+      --text2: #8892b0;
+      --green: #00b894;
+      --yellow: #fdcb6e;
+      --red: #e17055;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      padding: 60px 0 40px;
+      border-bottom: 1px solid rgba(108, 92, 231, 0.2);
+    }
+
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .hero-text h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+
+    .hero-text .tagline {
+      font-size: 1.2rem;
+      color: var(--text2);
+      margin-bottom: 8px;
+    }
+
+    .hero-text p {
+      max-width: 600px;
+      color: var(--text2);
+      font-size: 1rem;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 184, 148, 0.1);
+      border: 1px solid rgba(0, 184, 148, 0.3);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      color: var(--green);
+      margin-bottom: 20px;
+    }
+
+    .status-badge .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .section {
+      padding: 50px 0;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title span {
+      color: var(--accent);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid rgba(108, 92, 231, 0.1);
+      border-radius: 12px;
+      padding: 20px;
+      transition: all 0.2s;
+    }
+
+    .skill-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .skill-card .icon {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .skill-card h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .skill-card p {
+      font-size: 0.85rem;
+      color: var(--text2);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid rgba(108, 92, 231, 0.1);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.2s;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent2);
+      transform: translateY(-2px);
+    }
+
+    .project-card .project-icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .project-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .project-card p {
+      font-size: 0.9rem;
+      color: var(--text2);
+      margin-bottom: 12px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      background: rgba(108, 92, 231, 0.15);
+      color: var(--accent2);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+    }
+
+    .contact-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #8b7cf7);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(108, 92, 231, 0.3);
+    }
+
+    .btn-secondary {
+      background: var(--surface2);
+      color: var(--text);
+      border: 1px solid rgba(108, 92, 231, 0.2);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+      margin: 30px 0;
+    }
+
+    .stat {
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat .number {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat .label {
+      font-size: 0.85rem;
+      color: var(--text2);
+      margin-top: 4px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      border-top: 1px solid rgba(108, 92, 231, 0.1);
+      color: var(--text2);
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* Accordion for testimonials / details */
+    details {
+      background: var(--surface);
+      border: 1px solid rgba(108, 92, 231, 0.1);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+
+    details summary {
+      font-weight: 600;
+      font-size: 1rem;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    details summary::after {
+      content: '▾';
+      color: var(--accent);
+      font-size: 1.2rem;
+      transition: transform 0.2s;
+    }
+
+    details[open] summary::after {
+      transform: rotate(180deg);
+    }
+
+    details p {
+      color: var(--text2);
+      font-size: 0.9rem;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .hero-text h1 { font-size: 2rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .contact-buttons { flex-direction: column; }
+      .contact-buttons .btn { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <header>
+    <div class="hero">
+      <div class="hero-text">
+        <div class="status-badge">
+          <span class="dot"></span>
+          Available for new projects
+        </div>
+        <h1>Koda M</h1>
+        <div class="tagline">✧ AI Automation Engineer</div>
+        <p>
+          I build AI-powered automation systems that streamline IT workflows,
+          replace manual tasks with smart agents, and give businesses back their time.
+          From cloud infrastructure to custom AI agents — I ship solutions that work.
+        </p>
+        <div class="contact-buttons">
+          <a class="btn btn-primary" href="mailto:kodameow123@gmail.com">
+            ✉ Hire Me
+          </a>
+          <a class="btn btn-secondary" href="#projects">
+            ↓ View Projects
+          </a>
+          <a class="btn btn-secondary" href="https://github.com/kodameow" target="_blank">
+            GitHub ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat">
+      <div class="number">8+</div>
+      <div class="label">AI Automations Deployed</div>
+    </div>
+    <div class="stat">
+      <div class="number">5</div>
+      <div class="label">Active Agent Systems</div>
+    </div>
+    <div class="stat">
+      <div class="number">6</div>
+      <div class="label">Communication Channels</div>
+    </div>
+    <div class="stat">
+      <div class="number">24/7</div>
+      <div class="label">Agent Uptime</div>
+    </div>
+  </div>
+
+  <!-- Skills -->
+  <section class="section" id="skills">
+    <h2 class="section-title"><span>⚡</span> Core Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="icon">🤖</div>
+        <h3>AI Agent Orchestration</h3>
+        <p>Multi-agent systems, task routing, and autonomous decision workflows</p>
+      </div>
+      <div class="skill-card">
+        <div class="icon">🔧</div>
+        <h3>IT Automation</h3>
+        <p>Ticket triage, password resets, monitoring alerts, server health checks</p>
+      </div>
+      <div class="skill-card">
+        <div class="icon">💬</div>
+        <h3>Chat & Voice Bots</h3>
+        <p>Discord, Telegram, WhatsApp, Slack bots with natural language understanding</p>
+      </div>
+      <div class="skill-card">
+        <div class="icon">☁️</div>
+        <h3>Cloud & Infra</h3>
+        <p>macOS/Linux server management, webhooks, cron jobs, CI/CD pipelines</p>
+      </div>
+      <div class="skill-card">
+        <div class="icon">📊</div>
+        <h3>Data Pipelines</h3>
+        <p>News aggregation, RSS scraping, market data, calendar sync automation</p>
+      </div>
+      <div class="skill-card">
+        <div class="icon">🛡️</div>
+        <h3>System Health Audits</h3>
+        <p>Security hardening, firewall config, risk posture, automated patching</p>
+      </div>
+      <div class="skill-card">
+        <div class="icon">📬</div>
+        <h3>Email Automation</h3>
+        <p>Smart inbox triage, auto-replies, daily briefings, RSS-to-email pipelines</p>
+      </div>
+      <div class="skill-card">
+        <div class="icon">🧠</div>
+        <h3>LLM Integration</h3>
+        <p>OpenAI, DeepSeek, Gemini, Ollama — model routing, prompt engineering</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="section" id="projects">
+    <h2 class="section-title"><span>🚀</span> Featured Projects</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-icon">📋</div>
+        <h3>Daily AI Briefing System</h3>
+        <p>
+          Fully automated morning briefing that scrapes live news (local, world, markets),
+          pulls weather forecasts, checks the NBA schedule, and reads your calendar —
+          all delivered to your email before you wake up.
+        </p>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">Open-Meteo API</span>
+          <span class="tag">RSS</span>
+          <span class="tag">Gmail API</span>
+          <span class="tag">Cron</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🎮</div>
+        <h3>Multi-Channel AI Assistant</h3>
+        <p>
+          A live AI agent operating across Discord (5 channels) and Telegram with
+          real-time chat, task execution, file access, and web search — available 24/7
+          with zero latency.
+        </p>
+        <div class="tags">
+          <span class="tag">OpenClaw</span>
+          <span class="tag">Discord API</span>
+          <span class="tag">Telegram API</span>
+          <span class="tag">LLM Routing</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">📊</div>
+        <h3>Mission Control Dashboard</h3>
+        <p>
+          Real-time system dashboard with live data freshness tracker, NBA scores,
+          betting odds, memory health ring, system metrics, and 12 quick-action buttons
+          — auto-refreshes every 15 seconds.
+        </p>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">HTML/JS</span>
+          <span class="tag">LaunchAgent</span>
+          <span class="tag">REST API</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🤖</div>
+        <h3>AI Event Discovery Agent</h3>
+        <p>
+          Intelligent agent that scans Eventbrite, Bandsintown, and Yelp to find
+          local events in the Bay Area — complete with booking links and venue details. Just say "find me events."
+        </p>
+        <div class="tags">
+          <span class="tag">Web Scraping</span>
+          <span class="tag">AI Agent</span>
+          <span class="tag">Location Filtering</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🏠</div>
+        <h3>AI Automation Infrastructure</h3>
+        <p>
+          Full stack: LaunchAgent auto-start server, 10-min automation collect
+          cycles, git auto-commit, file-locking security (MEMORY.md chmod 444),
+          and heartbeat-driven proactive monitoring.
+        </p>
+        <div class="tags">
+          <span class="tag">LaunchAgent</span>
+          <span class="tag">Shell Scripting</span>
+          <span class="tag">Git</span>
+          <span class="tag">Security Hardening</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Service Offerings -->
+  <section class="section" id="services">
+    <h2 class="section-title"><span>💼</span> Services</h2>
+
+    <details>
+      <summary>🤖 Custom AI Agent Setup — $300–$800</summary>
+      <p>
+        Full deployment of a personal or business AI assistant across your preferred
+        channels (Discord, Telegram, Slack, WhatsApp). Includes LLM integration,
+        tool setup, memory configuration, and 2 weeks of support.
+      </p>
+    </details>
+
+    <details>
+      <summary>⚙️ IT Workflow Automation — $200–$600</summary>
+      <p>
+        Automate ticket triage, password resets, server health checks, monitoring
+        alerts, and reporting. I'll audit your current workflows and build scripts/agents
+        that handle them automatically.
+      </p>
+    </details>
+
+    <details>
+      <summary>📊 Data Pipeline & Briefing System — $150–$400</summary>
+      <p>
+        Custom daily briefing systems: aggregate news, weather, calendar, sports,
+        and market data into a single email or dashboard. Fully automated, no
+        daily maintenance.
+      </p>
+    </details>
+
+    <details>
+      <summary>🔒 System Security Audit & Hardening — $250–$500</summary>
+      <p>
+        Comprehensive audit of your server/desktop: firewall rules, SSH config,
+        exposed ports, cron job hygiene, update compliance, and risk scoring.
+        Actionable report + fixes.
+      </p>
+    </details>
+
+    <details>
+      <summary>🏗️ Infrastructure-as-Code Setup — $400–$1,000</summary>
+      <p>
+        Set up CI/CD pipelines, LaunchAgent auto-start services, git automation,
+        deployment scripts, and monitoring dashboards. Everything documented and
+        repeatable.
+      </p>
+    </details>
+
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <h2 class="section-title"><span>❓</span> Common Questions</h2>
+
+    <details>
+      <summary>How long does a typical project take?</summary>
+      <p>
+        Most projects take 2–5 days from kickoff to delivery. Complex multi-agent
+        systems may take 1–2 weeks. I provide weekly updates and a test period
+        before final handoff.
+      </p>
+    </details>
+
+    <details>
+      <summary>What's your process?</summary>
+      <p>
+        Discovery call → Requirements doc → Build phase (with regular check-ins) →
+        Testing & tweaks → Deployment → 2-week support window. I use git for
+        version control and document everything.
+      </p>
+    </details>
+
+    <details>
+      <summary>Do you offer maintenance and ongoing support?</summary>
+      <p>
+        Yes! Monthly retainer options available ($100–$300/mo) covering updates,
+        bug fixes, monitoring, and priority support.
+      </p>
+    </details>
+
+    <details>
+      <summary>Can you work with my existing tools?</summary>
+      <p>
+        Likely yes. I integrate with any system that has an API or webhook —
+        Jira, Zendesk, Slack, Google Workspace, custom databases, you name it.
+      </p>
+    </details>
+
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      ✉ <a href="mailto:kodameow123@gmail.com">kodameow123@gmail.com</a>
+      &nbsp;·&nbsp; 🐙 <a href="https://github.com/kodameow" target="_blank">github.com/kodameow</a>
+      &nbsp;·&nbsp; 🌉 Based in San Francisco
+    </p>
+    <p style="margin-top: 8px;">
+      Built with ❤️ by AI · Last updated May 2026
+    </p>
+  </footer>
+
+</div>
+
+</body>
+</html>
